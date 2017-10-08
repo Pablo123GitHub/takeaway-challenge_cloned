@@ -1,13 +1,21 @@
 
-class Menu #:nodoc:"
-  attr_reader :menu
-  def initialize(menu)
-    @menu = menu
+class Menu
+  attr_reader :dishes
+  def initialize(dishes)
+    @dishes = dishes
   end
 
-  def print_nice
-    menu.map do |dish, price|
-      format('%s £%.2f', dish.to_s.capitalize, price)
-    end.join(', ')
+  def print
+    dishes.map  do |title, price|
+      "%s £%.2f" % [title.to_s.capitalize, price]
+  end.join(", ")
+  end
+
+  def has_dish?(dish)
+    !dishes[dish].nil?
+  end
+
+  def price(dish)
+    dishes[dish]
   end
 end
